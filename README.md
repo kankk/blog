@@ -1,22 +1,12 @@
-# blog
+# Blog
 
-> My dandy Nuxt.js project
+> 基于 Vue SSR 搭建的个人 Blog
 
-## Build Setup
+## Change Log
 
-``` bash
-# install dependencies
-$ npm run install
+`2019-07-28`
+* Nuxt 框架初始化
+* 首页、导航栏、Header 和 Footer
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+`2019-07-19`
+* 同构直出 Demo

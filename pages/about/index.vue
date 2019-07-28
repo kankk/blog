@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="article-list">
+    <div class="about-list">
       暂时没有发布内容喔!~
     </div>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'About',
   layout: 'blog',
   data () {
     return {
@@ -21,7 +21,7 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/css/color.scss';
 .container {
-  .article-list {
+  .about-list {
     text-align: center;
     color: $color-title;
     padding: 8px;

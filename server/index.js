@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+const backConfig = require('../config/back.config.js')
 
 const app = new Koa()
 
@@ -12,10 +13,13 @@ async function start () {
   // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
 
-  const {
-    host = process.env.HOST || '127.0.0.1',
-    port = process.env.PORT || 3000
-  } = nuxt.options.server
+  // const {
+  //   host = process.env.HOST || '127.0.0.1',
+  //   port = process.env.PORT || 3000
+  // } = nuxt.options.server
+
+  const host = backConfig.host || '127.0.0.1'
+  const port = backConfig.port || 3000
 
   // Build in development
   if (config.dev) {
