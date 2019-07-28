@@ -13,5 +13,5 @@
 **技术栈：**
 - **Vue SSR：** [Nuxt.js](https://github.com/nuxt/nuxt.js)
 - **Server：** [koa](https://github.com/koajs/koa)
-- **Process：** [pm2](https://github.com/Unitech/pm2)
-- **Database：** [mysql](https://github.com/mysqljs/mysql)
+- **进程管理：** [pm2](https://github.com/Unitech/pm2)
+- **数据库：** [mysql](https://github.com/mysqljs/mysql)
