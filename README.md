@@ -1,9 +1,22 @@
-# Blog
+# blog
 
-> 基于 Vue SSR 搭建的个人 Blog
+> My dandy Nuxt.js project
 
-## Change Log
+## Build Setup
 
-`2019-07-19`
+``` bash
+# install dependencies
+$ npm run install
 
-* 同构直出 Demo
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm run start
+
+# generate static project
+$ npm run generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
