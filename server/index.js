@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const consola = require('consola')
+const cors = require('koa2-cors')
 const { Nuxt, Builder } = require('nuxt')
 const backConfig = require('../config/back.config.js')
 
@@ -9,14 +10,11 @@ const app = new Koa()
 const config = require('../nuxt.config.js')
 config.dev = app.env !== 'production'
 
+const router = require('./routers/index')
+
 async function start () {
   // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
-
-  // const {
-  //   host = process.env.HOST || '127.0.0.1',
-  //   port = process.env.PORT || 3000
-  // } = nuxt.options.server
 
   const host = backConfig.host || '127.0.0.1'
   const port = backConfig.port || 3000
@@ -28,6 +26,18 @@ async function start () {
   } else {
     await nuxt.ready()
   }
+
+  if (process.env.NODE_ENV === 'development') {
+    app.use(cors({
+      origin: '*',
+      maxAge: 60 * 1000,
+      credentials: true,
+      allowMethods: ['GET', 'POST', 'DELETE', 'PUT'],
+      allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With']
+    }))
+  }
+
+  app.use(router.routes()).use(router.allowedMethods())
 
   app.use((ctx) => {
     ctx.status = 200
