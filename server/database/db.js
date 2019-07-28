@@ -23,8 +23,8 @@ db.query = (sql) => {
   })
 }
 
-db.get = (tableName) => {
-
+db.getAll = (tableName) => {
+  return db.query(`SELECT * FROM ${tableName}`)
 }
 
 // INSERT
