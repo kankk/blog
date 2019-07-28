@@ -1,6 +1,6 @@
 # Blog
 
-> 基于 Vue SSR 搭建的个人 Blog
+> 基于 Nuxt.js 搭建的个人 Blog
 
 ## Change Log
 
