@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import { $get } from '~/plugins/axios'
 export default {
   name: 'Project',
   layout: 'blog',
@@ -16,9 +15,9 @@ export default {
 
     }
   },
-  async asyncData () {
-    const res = await $get('/api/project/all')
-    console.log(res)
+  async asyncData ({ $axios }) {
+    const res = await $axios.get('/api/project/all')
+    return { projectList: res.data }
   }
 }
 </script>

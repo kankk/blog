@@ -40,7 +40,9 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    '~/plugins/axios'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -53,11 +55,7 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy'
-  ],
-  proxy: [
-    ['/api', { target: 'localhost:3000' }]
+    '@nuxtjs/axios'
   ],
   /*
    ** Axios module configuration

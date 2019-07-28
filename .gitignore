@@ -89,3 +89,6 @@ sw.*
 
 # Config
 config/
+
+# package
+package-lock.json

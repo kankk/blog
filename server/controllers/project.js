@@ -3,7 +3,7 @@ const db = require('../database/db')
 const tableName = 'Project'
 
 const queryAll = async (ctx) => {
-  const result = await db.queryAll(tableName)
+  const result = await db.getAll(tableName)
   ctx.status = 200
   ctx.body = {
     code: 200,
