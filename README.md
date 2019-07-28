@@ -4,7 +4,7 @@
 
 **基于 [Nuxt.js](https://github.com/nuxt/nuxt.js) 搭建的个人网站**
 
-**网站地址：https://www.mangokk.me/**
+**网站地址：https://mangokk.me/**
 
 **更新记录：[CHANGELOG.md](https://github.com/kankk/blog/blob/master/CHANGELOG.md)**
 
