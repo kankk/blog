@@ -54,7 +54,10 @@ const decode = (token) => {
   }
 }
 
-const sign = (payload) => {
+const sign = (payload, ttl = 30 * 60 * 1000) => {
+  if (!payload.expires || typeof payload.expire !== 'number') {
+    payload.expire = +new Date() + ttl
+  }
   const payloadStr = typeof payload === 'string' ? payload : JSON.stringify(payload)
   const base64Header = base64UrlEncode(JSON.stringify(header))
   const base64Payload = base64UrlEncode(payloadStr)

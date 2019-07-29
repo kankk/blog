@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const consola = require('consola')
+const bodyParser = require('koa-bodyparser')
 const cors = require('koa2-cors')
 const { Nuxt, Builder } = require('nuxt')
 const backConfig = require('../config/back.config.js')
@@ -37,6 +38,9 @@ async function start () {
     }))
   }
 
+  // 使用 ctx.body 解析中间件(koa-bodyparser)
+  app.use(bodyParser())
+  // Api 路由
   app.use(router.routes()).use(router.allowedMethods())
 
   app.use((ctx) => {
