@@ -1,5 +1,5 @@
 <template>
-  <div class="error-page">
+  <div id="error">
     <div class="error-content">
       <span class="error-content-code">{{ error.statusCode }}</span>
       <nuxt-link class="error-content-home" to="/" tag="span">
@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~/assets/css/color.scss';
-.error-page {
+#error {
   width: 100%;
   height: 100vh;
   display: flex;

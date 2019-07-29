@@ -1,5 +1,8 @@
 # CHANGELOG
 
+`2019-07-29`
+* Error 页面
+
 `2019-07-28`
 * Nuxt 框架初始化
 * 首页、导航栏、Header 和 Footer
