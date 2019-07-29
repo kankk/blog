@@ -65,10 +65,6 @@ const sign = (payload) => {
   return `${base64Header}.${base64Payload}.${base64Sign}`
 }
 
-console.log(sign({
-  name: 'kankk'
-}))
-
 module.exports = {
   sign,
   decode,
