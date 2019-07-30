@@ -9,5 +9,6 @@ userRouter.post('/login', userController.login)
 userRouter.post('/register', userController.register)
 userRouter.post('/password', userController.changePassword)
 // userRouter.post('/verify', userController.tokenVerify)
+userRouter.post('/logout', userController.logout)
 
 module.exports = userRouter

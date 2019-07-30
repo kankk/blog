@@ -5,6 +5,7 @@
 `2019-07-30`
 * Dashboard 鉴权方案(token + cookies)
 * Dashboard 后台管理模块
+* Dashboard 登出功能
 
 `2019-07-29`
 * Error 页面

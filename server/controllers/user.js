@@ -224,9 +224,23 @@ const tokenVerify = (ctx) => {
   }
 }
 
+const logout = (ctx) => {
+  ctx.cookies.set('token', '', {
+    signed: true,
+    maxAge: 0
+  })
+  ctx.status = 200
+  ctx.body = {
+    code: 200,
+    data: null,
+    message: '登出成功'
+  }
+}
+
 module.exports = {
   register,
   changePassword,
   login,
-  tokenVerify
+  tokenVerify,
+  logout
 }
