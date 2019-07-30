@@ -156,13 +156,21 @@ const login = async (ctx) => {
     const salt = queryUser.salt
     const enPassword = dbHelper.getCryptoString(salt + user.password)
     if (enPassword === queryUser.password) {
+      const ttl = 30 * 60 * 1000
+      // 生成 Token
       const token = jwt.sign({
         id: queryUser.id,
-        username: queryUser.username
+        username: queryUser.username,
+        expires: +new Date() + ttl
       })
       const resUser = {
         token
       }
+      // 生成 Cookie
+      ctx.cookies.set('token', token, {
+        signed: true,
+        maxAge: ttl
+      })
       ctx.status = 200
       ctx.body = {
         code: 200,
@@ -174,7 +182,7 @@ const login = async (ctx) => {
       ctx.body = {
         code: 400,
         data: {},
-        message: '密码错误'
+        message: '用户名或者密码错误'
       }
     }
   } else {
@@ -182,7 +190,36 @@ const login = async (ctx) => {
     ctx.body = {
       code: 400,
       data: {},
-      message: '该用户不存在'
+      message: '用户名或者密码错误'
+    }
+  }
+}
+
+const tokenVerify = (ctx) => {
+  const data = ctx.request.body
+  if (!data || !data.token) {
+    ctx.status = 400
+    ctx.body = {
+      code: 400,
+      data: {},
+      message: '请求参数格式错误'
+    }
+  }
+
+  const token = data.token
+  if (jwt.verify(token, true)) {
+    ctx.status = 200
+    ctx.body = {
+      code: 200,
+      data: {},
+      message: '用户登录状态校验成功'
+    }
+  } else {
+    ctx.status = 200
+    ctx.body = {
+      code: 401,
+      data: {},
+      message: '用户登录状态校验失败'
     }
   }
 }
@@ -190,5 +227,6 @@ const login = async (ctx) => {
 module.exports = {
   register,
   changePassword,
-  login
+  login,
+  tokenVerify
 }

@@ -28,19 +28,30 @@ export default {
       password: ''
     }
   },
+  beforeMount () {
+    const isAuthenticated = this.$store.state.dashboard.isAuthenticated
+    const token = this.$store.state.dashboard.token
+    if (!!isAuthenticated || !!token) {
+      this.$store.commit('dashboard/initDashboard')
+    }
+  },
   methods: {
     async handleLogin () {
       try {
         const _username = this.username
         const _password = window.btoa(this.password)
-        const res = await this.$axios.$post('/api/user/login', {
+        const res = await this.$axios.post('/api/user/login', {
           username: _username,
           password: _password
         })
-        if (res.code === 200) {
+        if (res.code === 200 && res.data) {
           // 登录成功
+          const token = res.data.token
+          this.$store.commit('dashboard/updateAuthenticated', true)
+          this.$store.commit('dashboard/updateToken', token)
+          this.$router.replace('/dashboard')
         } else {
-          console.log(res.message)
+          alert(res.message)
         }
       } catch (err) {
         console.log(err)

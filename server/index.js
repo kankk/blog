@@ -7,6 +7,9 @@ const backConfig = require('../config/back.config.js')
 
 const app = new Koa()
 
+// 设置 keys
+app.keys = backConfig.keys
+
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = app.env !== 'production'

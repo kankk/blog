@@ -8,5 +8,6 @@ const userRouter = new Router({
 userRouter.post('/login', userController.login)
 userRouter.post('/register', userController.register)
 userRouter.post('/password', userController.changePassword)
+// userRouter.post('/verify', userController.tokenVerify)
 
 module.exports = userRouter

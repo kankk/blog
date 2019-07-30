@@ -19,7 +19,7 @@ const base64UrlDecode = (str) => {
   return Buffer.from(str, 'base64').toString('utf8')
 }
 
-const verify = (token) => {
+const verify = (token, isVerifyExpires = false) => {
   try {
     const args = token.split('.')
     if (args.length !== 3) {
@@ -34,7 +34,14 @@ const verify = (token) => {
     const signature = crypto.createHmac(_header.alg, secret).update(securedInput).digest()
     const _base64Sign = base64UrlEncode(signature)
 
-    return _base64Sign === base64Sign
+    let isExpires = false
+    if (isVerifyExpires) {
+      const payload = decode(token)
+      const expires = payload.expires || 0
+      isExpires = expires < (+new Date())
+    }
+
+    return _base64Sign === base64Sign && !isExpires
   } catch (err) {
     return false
   }
@@ -55,8 +62,8 @@ const decode = (token) => {
 }
 
 const sign = (payload, ttl = 30 * 60 * 1000) => {
-  if (!payload.expires || typeof payload.expire !== 'number') {
-    payload.expire = +new Date() + ttl
+  if (!payload.expires || typeof payload.expires !== 'number') {
+    payload.expires = +new Date() + ttl
   }
   const payloadStr = typeof payload === 'string' ? payload : JSON.stringify(payload)
   const base64Header = base64UrlEncode(JSON.stringify(header))
