@@ -51,8 +51,8 @@ export default {
       .logo {
         width: 32px;
         height: 32px;
-        margin-left: 20px;
-        margin-right: 150px;
+        margin-left: 85px;
+        margin-right: 85px;
       }
       .name {
         font-size: 16px;
