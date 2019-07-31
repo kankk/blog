@@ -25,7 +25,7 @@ export default {
           to: ''
         },
         {
-          title: 'Node 监控',
+          title: 'Node 性能监控',
           to: '/monitor'
         }
       ]

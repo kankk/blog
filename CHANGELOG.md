@@ -2,6 +2,9 @@
 
 ## 1.0.0
 
+`2019-07-31`
+* Node 性能监控
+
 `2019-07-30`
 * Dashboard 鉴权方案(token + cookies)
 * Dashboard 后台管理模块
