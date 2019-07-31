@@ -4,6 +4,7 @@
 
 `2019-07-31`
 * Node 性能监控
+* Api 鉴权中间件
 
 `2019-07-30`
 * Dashboard 鉴权方案(token + cookies)

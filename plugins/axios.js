@@ -1,5 +1,9 @@
-export default function ({ $axios }) {
+export default function ({ $axios, store }) {
   $axios.interceptors.request.use((config) => {
+    if (store.state && store.state.dashboard && store.state.dashboard.token) {
+      const token = store.state.dashboard.token
+      config.headers.token = token
+    }
     return config
   }, (error) => {
     return Promise.reject(error)
@@ -8,6 +12,10 @@ export default function ({ $axios }) {
   $axios.interceptors.response.use((response) => {
     return response
   }, (error) => {
+    if (error.response.status === 401) { // 登录状态失效
+      store.commit('dashboard/initDashboard')
+      window.location.href = '/login'
+    }
     return Promise.reject(error)
   })
 
