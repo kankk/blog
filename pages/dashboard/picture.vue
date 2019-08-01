@@ -1,7 +1,9 @@
 <template>
   <div class="picture">
     <div class="content-cell">
-      <input type="file" name="picture" @change="handleUploadPicture">
+      <file-button name="picture" @change="handleUploadPicture">
+        上传图片
+      </file-button>
     </div>
     <div class="content-cell">
       <div class="content-cell-label">
@@ -25,8 +27,12 @@
 </template>
 
 <script>
+import FileButton from '~/components/dashboard/file-button.vue'
 export default {
   name: 'Picture',
+  components: {
+    FileButton
+  },
   data () {
     return {
       pictures: []
