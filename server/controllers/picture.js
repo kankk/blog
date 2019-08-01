@@ -82,7 +82,7 @@ const getAllPictures = async (ctx) => {
 }
 
 const deletePicture = async (ctx) => {
-  const filename = ctx.params.filename
+  const filename = ctx.request.body.filename
   if (!filename) {
     ctx.status = 400
     ctx.body = {

@@ -10,6 +10,6 @@ pictureRouter.use(apiAuth)
 
 pictureRouter.post('/upload', pictureController.uploading, pictureController.uploaded)
 pictureRouter.get('/all', pictureController.getAllPictures)
-pictureRouter.post('/delete/:filenmae', pictureController.deletePicture)
+pictureRouter.post('/delete', pictureController.deletePicture)
 
 module.exports = pictureRouter

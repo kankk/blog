@@ -1,7 +1,9 @@
+const path = require('path')
 const Koa = require('koa')
 const consola = require('consola')
 const bodyParser = require('koa-bodyparser')
 const cors = require('koa2-cors')
+const koaStatic = require('koa-static')
 const { Nuxt, Builder } = require('nuxt')
 const backConfig = require('../config/back.config.js')
 
@@ -40,6 +42,10 @@ async function start () {
       allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With']
     }))
   }
+
+  app.use(koaStatic(path.join(__dirname, '../public'), {
+    maxage: 365 * 24 * 60 * 1000
+  }))
 
   // 使用 ctx.body 解析中间件(koa-bodyparser)
   app.use(bodyParser())
