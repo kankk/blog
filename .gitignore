@@ -92,3 +92,5 @@ config/
 
 # package
 package-lock.json
+
+/public

@@ -25,6 +25,10 @@ export default {
           to: ''
         },
         {
+          title: '图片',
+          to: '/picture'
+        },
+        {
           title: 'Node 性能监控',
           to: '/monitor'
         }
