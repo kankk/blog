@@ -28,6 +28,7 @@
 
 <script>
 import FileButton from '~/components/dashboard/file-button.vue'
+import PictureModal from '~/components/dashboard/picture-modal'
 export default {
   name: 'Picture',
   components: {
@@ -66,7 +67,9 @@ export default {
     },
     // 查看图片
     handleOpenPicture (p) {
-
+      PictureModal(Object.assign(p, {
+        url: `${window.location.origin}/pictures/${p.filename}`
+      }))
     },
     // 获取图片链接
     handleLinkPicture (p) {
