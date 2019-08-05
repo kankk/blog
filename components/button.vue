@@ -1,5 +1,4 @@
 <template>
-  <!-- ios系统需要定义touchstart才会触发伪元素active -->
   <a
     class="m-button"
     :class="[
@@ -48,8 +47,14 @@ export default {
   font-weight: 400;
   background-color: #fff;
   &:hover {
-    cursor: pointer;
-    opacity: 0.85;
+    &.m-button__primary, &.m-button__error {
+      cursor: pointer;
+      opacity: 0.85;
+    }
+    &.m-button__default {
+      cursor: pointer;
+      background-color: #ddd;
+    }
   }
   &:active {
     opacity: 0.65;
@@ -61,6 +66,7 @@ export default {
 
   &.m-button__default {
     color: rgba(0, 0, 0, 0.85);
+    border: 1px solid $color-border;
   }
 
   &.m-button__primary {
