@@ -69,7 +69,7 @@ export default {
     },
     handleCancel () {
       this.$emit('cancel')
-      // this.$emit('update:visible', false)
+      this.$emit('update:visible', false)
     }
   }
 }

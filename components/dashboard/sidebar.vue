@@ -29,6 +29,10 @@ export default {
           to: '/picture'
         },
         {
+          title: '文章',
+          to: '/article'
+        },
+        {
           title: 'Node 性能监控',
           to: '/monitor'
         }
@@ -41,8 +45,9 @@ export default {
     },
     async logout () {
       const res = await this.$axios.post('/api/user/logout')
-      console.log(res.message)
-      this.$router.replace('/login')
+      if (res.code === 200) {
+        this.$router.replace('/login')
+      }
     }
   }
 }
