@@ -37,8 +37,11 @@
       </div>
     </div>
     <div class="content-cell">
-      <div class="content-cell-label">
-        文章
+      <div class="content-cell-label layout-flex-between">
+        <span>文章</span>
+        <m-button inline @click="showArticleDialog">
+          添加
+        </m-button>
       </div>
     </div>
     <m-dialog :visible.sync="isShowClassificationDialog" @confirm="handleClassificationDialogConfirm">
@@ -58,7 +61,7 @@
         </form>
       </template>
     </m-dialog>
-    <m-dialog :visible.sync="isShowTagDialog" @confirm="handleTagialogConfirm">
+    <m-dialog :visible.sync="isShowTagDialog" @confirm="handleTagDialogConfirm">
       <template v-slot:header>
         <span>添加标签</span>
       </template>
@@ -75,17 +78,33 @@
         </form>
       </template>
     </m-dialog>
+    <m-dialog :visible.sync="isShowArticleDialog" @confirm="handleArticleDialogConfirm">
+      <template v-slot:header>
+        <span>新的文章</span>
+      </template>
+      <template>
+        <form>
+          <div class="form-item">
+            <file-button name="article" @change="handleUploadArticle">
+              上传文章
+            </file-button>
+          </div>
+        </form>
+      </template>
+    </m-dialog>
   </div>
 </template>
 
 <script>
 import MButton from '~/components/button.vue'
 import MDialog from '~/components/dialog.vue'
+import FileButton from '~/components/dashboard/file-button.vue'
 export default {
   name: 'Article',
   components: {
     MButton,
-    MDialog
+    MDialog,
+    FileButton
   },
   data () {
     return {
@@ -95,7 +114,9 @@ export default {
 
       tagList: [],
       isShowTagDialog: false,
-      inputTag: ''
+      inputTag: '',
+
+      isShowArticleDialog: false
     }
   },
   watch: {
@@ -178,7 +199,7 @@ export default {
       this.isShowTagDialog = true
     },
     // 提交新标签
-    async handleTagialogConfirm () {
+    async handleTagDialogConfirm () {
       const res = await this.$axios.post('/api/blog/tag/add', {
         name: this.inputTag
       })
@@ -201,6 +222,26 @@ export default {
         } else {
 
         }
+      }
+    },
+    // 显示文章窗口
+    showArticleDialog () {
+      this.isShowArticleDialog = true
+    },
+    // 提交新的文章
+    handleArticleDialogConfirm () {
+      this.isShowArticleDialog = false
+    },
+    // 上传文章
+    async handleUploadArticle (e) {
+      const targetElement = e.srcElement
+      const fd = new FormData()
+      fd.append('article', targetElement.files[0])
+      const res = await this.$axios.post('/api/blog/article/upload', fd)
+      if (res.code === 200) {
+        // this.getAllPictures()
+      } else {
+        // 上传文章失败
       }
     }
   }
