@@ -6,7 +6,7 @@ export default function (context) {
       context.redirect('/login')
       return
     }
-    const tokenCookie = context.req.headers.cookie.split(';').find(c => c.trim().startsWith('token='))
+    const tokenCookie = context.req.headers.cookie.split(';').find(c => c.trim().startsWith('token=')) || ''
     const token = tokenCookie.split('=')[1]
     const isVerified = jwt.verify(token, true)
     if (!isVerified) {

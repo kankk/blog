@@ -19,7 +19,7 @@ const base64UrlDecode = (str) => {
   return Buffer.from(str, 'base64').toString('utf8')
 }
 
-const verify = (token, isVerifyExpires = false) => {
+const verify = (token = '', isVerifyExpires = false) => {
   try {
     const args = token.split('.')
     if (args.length !== 3) {
@@ -47,7 +47,7 @@ const verify = (token, isVerifyExpires = false) => {
   }
 }
 
-const decode = (token) => {
+const decode = (token = '') => {
   try {
     const args = token.split('.')
     if (args.length !== 3) {
