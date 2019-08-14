@@ -116,6 +116,7 @@ export default {
       isShowTagDialog: false,
       inputTag: '',
 
+      lastUploadFilename: '',
       isShowArticleDialog: false
     }
   },
@@ -229,17 +230,25 @@ export default {
       this.isShowArticleDialog = true
     },
     // 提交新的文章
-    handleArticleDialogConfirm () {
-      this.isShowArticleDialog = false
+    async handleArticleDialogConfirm () {
+      const res = await this.$axios.post('/api/blog/article/add', {
+        filename: this.lastUploadFilename
+      })
+      if (res.code === 200) {
+        this.isShowArticleDialog = false
+      } else {
+
+      }
     },
     // 上传文章
     async handleUploadArticle (e) {
       const targetElement = e.srcElement
       const fd = new FormData()
-      fd.append('article', targetElement.files[0])
+      const file = targetElement.files[0]
+      fd.append('article', file)
       const res = await this.$axios.post('/api/blog/article/upload', fd)
       if (res.code === 200) {
-        // this.getAllPictures()
+        this.lastUploadFilename = file.name
       } else {
         // 上传文章失败
       }

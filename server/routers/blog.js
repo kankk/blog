@@ -22,5 +22,7 @@ blogRouter.post('/tag/delete', tagController.deleteTag)
 
 // 文章
 blogRouter.post('/article/upload', articleController.uploading, articleController.uploaded)
+blogRouter.post('/article/add', articleController.addArticle)
+blogRouter.post('/article/delete', articleController.deleteArticle)
 
 module.exports = blogRouter
